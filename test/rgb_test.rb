@@ -1,4 +1,6 @@
 require 'minitest/autorun'
+require_relative 'test-helper'
+
 require_relative '../lib/rgb'
 
 class RgbTest < Minitest::Test
@@ -12,5 +14,14 @@ class RgbTest < Minitest::Test
     assert_equal [0, 0, 0], to_ints('#000000')
     assert_equal [255, 255, 255], to_ints('#ffffff')
     assert_equal [4, 60, 120], to_ints('#043c78')
+
+    # 以下は異常系
+    assert_nil to_ints(nil)
+    assert_nil to_ints('000000')
+    assert_nil to_ints('#043c7')
+  end
+
+  def test_seika_regexp
+    assert "A\u{17000}B".match(/\p{Tangut}/)
   end
 end
