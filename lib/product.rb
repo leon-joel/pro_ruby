@@ -1,9 +1,19 @@
 class Product
-  attr_reader :name, :price
+  attr_reader :code, :name, :price
 
-  def initialize(name, price)
+  def initialize(code, name, price)
+    @code = code
     @name = name
     @price = price
+  end
+
+  # 演算子のオーバーライド
+  def ==(other)
+    if other.is_a? Product
+      code == other.code
+    else
+      false
+    end
   end
 end
 
@@ -18,7 +28,7 @@ class DVD < Product
 end
 
 if $0 == __FILE__
-  dvd = DVD.new('A great movie', 1000)
+  dvd = DVD.new('A-001', 'A great movie', 1000)
   dvd.name  #=> "A great movie"
   dvd.price #=> 1000
 end
