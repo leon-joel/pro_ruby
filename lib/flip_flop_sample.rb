@@ -1,4 +1,4 @@
-def flip_flop(text)
+def flip_flop_manually(text)
   output_flag = false
   text.each_line(chomp: true).inject(+"") do |output, line|
     if line == 'いただきます'
@@ -11,6 +11,15 @@ def flip_flop(text)
 
     if line == 'ごちそうさま'
       output_flag = false
+    end
+    output
+  end
+end
+
+def flip_flop(text)
+  text.each_line(chomp: true).inject(+"") do |output, line|
+    if (line == 'いただきます')..(line == 'ごちそうさま')
+      output.concat("#{line}\n")
     end
     output
   end
